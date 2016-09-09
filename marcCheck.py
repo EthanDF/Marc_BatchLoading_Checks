@@ -2,7 +2,10 @@ from pymarc import *
 import csv
 import urllib.parse
 import urllib.request
+import tkinter
 
+root = tkinter.Tk()
+root.withdraw()
 
 def checkOCLC(OCN):
     url = 'https://worldcat.org/bib/data/'
@@ -15,7 +18,13 @@ def marcCheck(debug=0):
     """Runs a number of error checks on a MARC record set based on article:
     http://go.galegroup.com/ps/i.do?p=ITOF&u=gale15691&id=GALE|A345172851&v=2.1&it=r&sid=summon&userGroup=gale15691&authCount=1"""
 
-    marcFile = 'MyMarcRecords.mrc'
+    # marcFile = 'c:\\users\\fenichele\downloads\\Kanopy_MARC_Records__film-movement-pda-package.mrc'
+    from tkinter import filedialog
+
+    input("\npress any key to choose the MARC File to review\n")
+    marcPath = tkinter.filedialog.askopenfile()
+    marcFile = marcPath.name
+    print("thanks, running...\n")
 
     recordCounter = 0
     with open(marcFile, 'rb') as fh:
