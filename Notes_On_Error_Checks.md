@@ -19,7 +19,6 @@ Notes on error checks related to streaming video mostly based on the OLAC Best P
 * In most cases, comprehensive description will be the best choice for individual streaming media resources ([RDA 1.5.2](http://access.rdatoolkit.org/rdachp1_rda1-678.html)).
 * MARC 588 _should be_ present as the source of title information.
 * MARC 245 is core to RDA, so it should be present - both subfields _a_ and _c_ at least
-* MARC 260 is core to RDA, place of publication, so it should be present, subfield _a_, publisher should be in subfield _b_
 * MARC 264 can be the copyright date in subfield _c_ - it should be recorded with a copyright symbol (c) and second indicator = 4
 * MARC 337 should always be 337 __ $a computer $b c $2 rdamedia
 * MARC 338 should always be 338 __ $a online resource $b cr #2 rdacarrier
