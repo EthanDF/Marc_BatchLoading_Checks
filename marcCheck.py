@@ -125,25 +125,29 @@ def marcCheck(ft='0', debug=0):
             if debug == 1:
                 print('\tLDR/ 17 = ' + str(LDR17))
 
-            # test 3 if ft = 0, MARC 006/00 = m, Additional Material Characteristics, if ft = 1, MARC 006/00 = v
-            marc006 = record['006'].value()[0:1].replace(" ", "#")
-            if debug == 1:
-                print('\t006/ 00 = '+str(marc006))
-            if marc006 != 'm':
-                print("\tERROR: "+str(recordCounter)+":\tMARC 006/00 should be 'm' but it is: "+str(marc006))
+            #test to see if there is a MARC 006 field
+            if record['006'] is not None:
+                # test 3 if ft = 0, MARC 006/00 = m, Additional Material Characteristics, if ft = 1, MARC 006/00 = v
+                marc006 = record['006'].value()[0:1].replace(" ", "#")
+                if debug == 1:
+                    print('\t006/ 00 = '+str(marc006))
+                if marc006 != 'm':
+                    print("\tERROR: "+str(recordCounter)+":\tMARC 006/00 should be 'm' but it is: "+str(marc006))
 
-            # test 4 if ft = 0, MARC 006/09 = d, if ft = 1, MARC 006/09 = c, Additional Material Characteristics
-            marc00609 = record['006'].value()[9:10].replace(" ", "#")
-            if debug == 1:
-                print('\t006/ 09 = ' + str(marc00609))
-            if ft == '0':
-                if str(marc00609) != 'd':
-                    print("\tERROR (test 4): " + str(recordCounter) + ":\tMARC 006/09 (should be 'd') = "
-                          + str(marc00609))
-            elif ft == '1':
-                if str(marc00609) != 'c':
-                    print("\tERROR (test 4): " + str(recordCounter) + ":\tMARC 006/09 (should be 'c') = " +
-                          str(marc00609))
+                # test 4 if ft = 0, MARC 006/09 = d, if ft = 1, MARC 006/09 = c, Additional Material Characteristics
+                marc00609 = record['006'].value()[9:10].replace(" ", "#")
+                if debug == 1:
+                    print('\t006/ 09 = ' + str(marc00609))
+                if ft == '0':
+                    if str(marc00609) != 'd':
+                        print("\tERROR (test 4): " + str(recordCounter) + ":\tMARC 006/09 (should be 'd') = "
+                              + str(marc00609))
+                elif ft == '1':
+                    if str(marc00609) != 'c':
+                        print("\tERROR (test 4): " + str(recordCounter) + ":\tMARC 006/09 (should be 'c') = " +
+                              str(marc00609))
+            else:
+                print('\tWARNING: '+str(recordCounter) + ' has no MARC 006')
 
             # Get the MARC 007 fields for further testing
 
